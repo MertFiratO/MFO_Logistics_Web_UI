@@ -1,0 +1,33 @@
+﻿@model List<MFO_Logistics_Web_UI.Models.ReceiptReport>
+
+
+
+<h2>Receipt Report</h2>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Receipt Code</th>
+            <th>Logistic</th>
+            <th>Depositor</th>
+            <th>Create Date</th>
+            <th>Status</th>
+            <th>Create User</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ReceiptCode</td>
+                <td>@item.LogisticName</td>
+                <td>@item.DepositorName</td>
+                <td>@item.CreateDate.ToString("dd.MM.yyyy")</td>
+                <td>@item.ReceiptStatusName</td>
+                <td>@item.CreateUser</td>
+            </tr>
+        }
+    </tbody>
+</table>

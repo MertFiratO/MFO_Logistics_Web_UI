@@ -1,0 +1,25 @@
+﻿@model MFO_Logistics_Web_UI.Models.LoginRequest
+
+
+@if (ViewBag.Error != null)
+{
+    <div style="color:red">@ViewBag.Error</div>
+}
+
+
+<form method="post">
+    <div>
+        <label>Kullanıcı Adı</label>
+        <input asp-for="Username" class="form-control" />
+    </div>
+
+    <div>
+        <label>Şifre</label>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Giriş Yap</button>
+</form>
+
