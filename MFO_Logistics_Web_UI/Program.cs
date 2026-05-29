@@ -1,10 +1,23 @@
+using MFO_Logistics_Web_UI.Filters;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<SessionAuthorizeFilter>();
+});
+
+
+
+
 builder.Services.AddHttpClient();
 builder.Services.AddSession();
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -17,6 +30,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseSession();
@@ -27,7 +42,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Auth}/{action=Login}/{id?}")
     .WithStaticAssets();
 
 

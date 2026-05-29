@@ -53,6 +53,13 @@ namespace MFO_Logistics_Web_UI.Controllers
 
             return RedirectToAction("Index", "Receipt");
         }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Auth");
+        }
+
     }
 
 }
