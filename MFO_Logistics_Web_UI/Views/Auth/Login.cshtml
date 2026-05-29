@@ -1,25 +1,63 @@
 ﻿@model MFO_Logistics_Web_UI.Models.LoginRequest
 
-
-@if (ViewBag.Error != null)
-{
-    <div style="color:red">@ViewBag.Error</div>
+@{
+    Layout = null;
 }
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <title>Login - MFO Logistics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<form method="post">
-    <div>
-        <label>Kullanıcı Adı</label>
-        <input asp-for="Username" class="form-control" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="min-height:100vh;">
+            <div class="col-md-4">
+
+                <div class="card shadow-sm">
+                    <div class="card-header text-center bg-dark text-white">
+                        <h4 class="mb-0">MFO Logistics</h4>
+                    </div>
+
+                    <div class="card-body">
+
+                        @if (ViewBag.Error != null)
+                        {
+                            <div class="alert alert-danger">
+                                @ViewBag.Error
+                            </div>
+                        }
+
+                        <form asp-controller="Auth" asp-action="Login" method="post">
+
+                            <div class="mb-3">
+                                <label class="form-label">Kullanıcı Adı</label>
+                                <input asp-for="Username" class="form-control" autocomplete="off" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Şifre</label>
+                                <input asp-for="Password" type="password" class="form-control" />
+                            </div>
+
+                            <button type="submit" class="btn btn-dark w-100">
+                                Giriş Yap
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <div>
-        <label>Şifre</label>
-        <input asp-for="Password" type="password" class="form-control" />
-    </div>
-
-    <br />
-
-    <button type="submit" class="btn btn-primary">Giriş Yap</button>
-</form>
-
+</body>
+</html>
