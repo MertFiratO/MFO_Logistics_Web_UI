@@ -51,7 +51,7 @@ namespace MFO_Logistics_Web_UI.Controllers
 
             HttpContext.Session.SetString("JWToken", loginResponse.Token);
 
-            return RedirectToAction("Index", "Receipt");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Logout()
