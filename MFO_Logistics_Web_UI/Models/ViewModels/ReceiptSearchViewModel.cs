@@ -1,5 +1,5 @@
-﻿using MFO_Logistics_Web_UI.Filters;
-using MFO_Logistics_Web_UI.Models.DTOs;
+﻿using MFO_Logistics_Web_UI.Models.DTOs;
+using MFO_Logistics_Web_UI.Models.Requests;
 
 namespace MFO_Logistics_Web_UI.Models.ViewModels
 {

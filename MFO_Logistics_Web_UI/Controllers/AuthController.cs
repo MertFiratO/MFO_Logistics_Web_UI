@@ -1,4 +1,5 @@
-﻿using MFO_Logistics_Web_UI.Models;
+﻿using MFO_Logistics_Web_UI.Models.Requests;
+using MFO_Logistics_Web_UI.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Text.Json;

@@ -1,4 +1,4 @@
-﻿namespace MFO_Logistics_Web_UI.Filters
+﻿namespace MFO_Logistics_Web_UI.Models.Requests
 {
     public class ReceiptFilterRequest
     {

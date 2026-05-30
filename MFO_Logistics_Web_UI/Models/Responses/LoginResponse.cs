@@ -1,4 +1,4 @@
-﻿namespace MFO_Logistics_Web_UI.Models
+﻿namespace MFO_Logistics_Web_UI.Models.Responses
 {
     public class LoginResponse
     {
