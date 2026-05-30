@@ -1,8 +1,7 @@
-﻿namespace MFO_Logistics_Web_UI.Models
+﻿namespace MFO_Logistics_Web_UI.Models.DTOs
 {
-    public class ReceiptReport
+    public class ReceiptSearchDTO
     {
-        public int ReceiptId { get; set; }
         public string ReceiptCode { get; set; }
         public string LogisticName { get; set; }
         public string DepositorName { get; set; }
