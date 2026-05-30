@@ -1,33 +1,94 @@
-﻿@model List<MFO_Logistics_Web_UI.Models.ReceiptReport>
+﻿@model MFO_Logistics_Web_UI.Models.ViewModels.ReceiptSearchViewModel
 
 
+
+@{
+    ViewData["Title"] = "Receipt Report";
+}
 
 <h2>Receipt Report</h2>
 
+<form asp-controller="Receipt" asp-action="Index" method="post" class="card p-3 mb-4">
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Receipt Code</th>
-            <th>Logistic</th>
-            <th>Depositor</th>
-            <th>Create Date</th>
-            <th>Status</th>
-            <th>Create User</th>
-        </tr>
-    </thead>
+    <div class="row">
 
-    <tbody>
-        @foreach (var item in Model)
-        {
+        <div class="col-md-2">
+            <label class="form-label">BaşlangıçTarihi</label>
+            <input asp-for="Filter.CreateDate" type="date" class="form-control" />
+        </div>
+
+        <div class="col-md-2">
+            <label class="form-label">BitişTarihi</label>
+            <input asp-for="Filter.CreateDate2" type="date" class="form-control" />
+        </div>
+
+        <div class="col-md-2">
+            <label class="form-label">TeslimAlma Kodu</label>
+            <input asp-for="Filter.ReceiptCode" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Depositor Adı</label>
+            <input asp-for="Filter.DepositorName" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Lojistik Adı</label>
+            <input asp-for="Filter.LogisticName" class="form-control" />
+        </div>
+
+    </div>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-dark">Ara</button>
+        <a asp-controller="Receipt" asp-action="Index" class="btn btn-secondary">Temizle</a>
+    </div>
+
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+@if (!Model.IsSearched)
+{
+    <div class="alert alert-info">
+        Filtre girip Ara butonuna basınız.
+    </div>
+}
+else if (Model.Receipts == null || !Model.Receipts.Any())
+{
+    <div class="alert alert-warning">
+        Kayıt bulunamadı.
+    </div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <td>@item.ReceiptCode</td>
-                <td>@item.LogisticName</td>
-                <td>@item.DepositorName</td>
-                <td>@item.CreateDate.ToString("dd.MM.yyyy")</td>
-                <td>@item.ReceiptStatusName</td>
-                <td>@item.CreateUser</td>
+                <th>Receipt Code</th>
+                <th>Logistic</th>
+                <th>Depositor</th>
+                <th>Create Date</th>
+                <th>Status</th>
+                <th>Create User</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Receipts)
+            {
+                <tr>
+                    <td>@item.ReceiptCode</td>
+                    <td>@item.LogisticName</td>
+                    <td>@item.DepositorName</td>
+                    <td>@(item.CreateDate.ToString("dd.MM.yyyy"))</td>
+                    <td>@item.ReceiptStatusName</td>
+                    <td>@item.CreateUser</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
