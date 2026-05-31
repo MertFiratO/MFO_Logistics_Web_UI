@@ -1,9 +1,88 @@
-﻿@{
-    ViewData["Title"] = "Dashboard";
-}
+﻿<div class="row">
 
-<div class="container mt-4">
-    <h3>MFO Logistics Dashboard</h3>
-    <p>İşlem yapmak için üst menüden seçim yapınız.</p>
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                Receipt Durumları
+            </div>
+
+            <div class="card-body">
+                <div style="height:300px;">
+                    <canvas id="receiptChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                Order Durumları
+            </div>
+            <div class="card-body">
+                Yakında...
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                Stock Özeti
+            </div>
+            <div class="card-body">
+                Yakında...
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                Genel Bilgiler
+            </div>
+            <div class="card-body">
+                Yakında...
+            </div>
+        </div>
+    </div>
+
 </div>
 
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const receiptCtx = document.getElementById('receiptChart');
+
+        new Chart(receiptCtx, {
+        type: 'bar',
+        data: {
+        labels: ['Tamamlandı', 'Devam Ediyor' , 'Beklemede', 'İptal Edildi' ],
+        datasets: [{
+        label: 'Receipt Sayısı',
+        data: [
+        @Model.Completed,
+        @Model.InProgress,
+        @Model.Waiting,
+        @Model.Cancelled
+        ],
+        borderWidth: 1
+        }]
+        },
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+        y: {
+        beginAtZero: true,
+        ticks: {
+        precision: 0
+        }
+        }
+        }
+        }
+        });
+    </script>
+}
